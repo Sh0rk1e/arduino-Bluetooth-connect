@@ -53,7 +53,7 @@ const codeTemplate = `#include <SoftwareSerial.h>
 SoftwareSerial BLE(10, 11); // RX, TX for HM-10
 
 // H-Bridge pins
-int IN1 = {IN1}, IN2 = {IN2}, IN3 = {IN3}, IN4 = {IN4};
+int IN1 = 2, IN2 = 3, IN3 = 4, IN4 = 5;
 
 void setup() {
   pinMode(IN1, OUTPUT);
@@ -84,23 +84,5 @@ void right() { digitalWrite(IN1, HIGH); digitalWrite(IN2, LOW); digitalWrite(IN3
 void stop() { digitalWrite(IN1, LOW); digitalWrite(IN2, LOW); digitalWrite(IN3, LOW); digitalWrite(IN4, LOW); }
 `;
 
-function updateCode() {
-  const in1 = document.getElementById('in1').value;
-  const in2 = document.getElementById('in2').value;
-  const in3 = document.getElementById('in3').value;
-  const in4 = document.getElementById('in4').value;
-  const code = codeTemplate
-    .replace('{IN1}', in1)
-    .replace('{IN2}', in2)
-    .replace('{IN3}', in3)
-    .replace('{IN4}', in4);
-  document.getElementById('arduinoCode').textContent = code;
-}
-
-// Initial update
-updateCode();
-
-// Add event listeners to inputs
-['in1', 'in2', 'in3', 'in4'].forEach(id => {
-  document.getElementById(id).addEventListener('input', updateCode);
-});
+// Set the code on load
+document.getElementById('arduinoCode').textContent = codeTemplate;

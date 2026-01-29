@@ -9,19 +9,38 @@
 <body>
     <div class="container">
         <h1>Arduino Car Control</h1>
-        <div class="pin-inputs">
-            <h2>H-Bridge Pin Configuration</h2>
-            <label>IN1: <input type="number" id="in1" value="2" min="0" max="13"></label>
-            <label>IN2: <input type="number" id="in2" value="3" min="0" max="13"></label>
-            <label>IN3: <input type="number" id="in3" value="4" min="0" max="13"></label>
-            <label>IN4: <input type="number" id="in4" value="5" min="0" max="13"></label>
+        <p><a href="joystick.html">Switch to Joystick Control</a></p>
+        <div class="hardware-setup">
+            <h2>Hardware Setup</h2>
+            <p><strong>HM-10 BLE Module Connections:</strong></p>
+            <ul>
+                <li>HM-10 VCC → Arduino 5V</li>
+                <li>HM-10 GND → Arduino GND</li>
+                <li>HM-10 TX → Arduino pin 10</li>
+                <li>HM-10 RX → Arduino pin 11</li>
+            </ul>
+            <p><strong>HM-10 Configuration (if needed):</strong></p>
+            <ul>
+                <li>To enter AT mode: Connect HM-10 STATE pin to HIGH (or leave floating for auto mode)</li>
+                <li>Use Arduino Serial Monitor (9600 baud) to send AT commands (e.g., AT+NAME=CarControl)</li>
+                <li>Default settings should work for BLE UART; ensure it's in transparent mode</li>
+            </ul>
+            <p><strong>H-Bridge Connections:</strong></p>
+            <ul>
+                <li>H-Bridge IN1 → Arduino pin 2</li>
+                <li>H-Bridge IN2 → Arduino pin 3</li>
+                <li>H-Bridge IN3 → Arduino pin 4</li>
+                <li>H-Bridge IN4 → Arduino pin 5</li>
+                <li>H-Bridge VCC and motor power supply as per module specs</li>
+            </ul>
         </div>
+
         <button id="connectBtn">Connect via Bluetooth</button>
         <div id="controls" style="display: none;">
             <button id="forwardBtn">Forward</button>
             <button id="backwardBtn">Backward</button>
             <button id="leftBtn">Left</button>
-            <button id="rightBtn">Right</button>
+            <button  id="rightBtn">Right</button>
             <button id="stopBtn">Stop</button>
         </div>
         <div id="status">Disconnected</div>

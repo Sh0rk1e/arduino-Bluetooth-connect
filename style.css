@@ -1,81 +1,148 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  background-color: #f0f0f0;
+  align-items: flex-start;
 }
 
 .container {
-  text-align: center;
+  max-width: 800px;
+  width: 100%;
   background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  text-align: center;
 }
 
 h1 {
-  margin-bottom: 20px;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+}
+
+h2 {
+  color: #555;
+  margin-bottom: 15px;
+  font-size: 1.5em;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 5px;
 }
 
 button {
-  padding: 10px 20px;
-  margin: 5px;
+  padding: 12px 24px;
+  margin: 8px;
   border: none;
-  border-radius: 5px;
-  background-color: #007bff;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #007bff, #0056b3);
   color: white;
   cursor: pointer;
   font-size: 16px;
+  transition: transform 0.2s;
 }
 
 button:hover {
-  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 button:disabled {
-  background-color: #ccc;
+  background: #ccc;
   cursor: not-allowed;
+  transform: none;
 }
 
 #controls {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  max-width: 300px;
+  margin: 20px auto;
 }
 
 #status {
   margin-top: 20px;
   font-weight: bold;
+  color: #28a745;
 }
 
-.pin-inputs {
-  margin-bottom: 20px;
+.hardware-setup, .pin-inputs, .arduino-code {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border-left: 5px solid #007bff;
 }
 
-.pin-inputs label {
-  display: inline-block;
-  margin-right: 10px;
+.hardware-setup {
+  text-align: left;
+}
+
+.hardware-setup ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.hardware-setup li {
   margin-bottom: 5px;
+  color: #666;
 }
 
-.pin-inputs input {
-  width: 50px;
-  padding: 2px;
-  margin-left: 5px;
+#joystick-container {
+  text-align: center;
+}
+
+#joystick {
+  border: 2px solid #007bff;
+  border-radius: 50%;
+  background: #f8f9fa;
 }
 
 .arduino-code {
-  margin-top: 20px;
   text-align: left;
 }
 
 .arduino-code pre {
-  background: #f4f4f4;
-  padding: 10px;
-  border-radius: 5px;
+  background: #2d3748;
+  color: #e2e8f0;
+  padding: 15px;
+  border-radius: 8px;
   overflow-x: auto;
   white-space: pre-wrap;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+a {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  text-decoration: none;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #28a745, #20c997);
+  color: white;
+  font-weight: bold;
+  transition: transform 0.2s;
+}
+
+a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+  h1 {
+    font-size: 2em;
+  }
+  #controls {
+    grid-template-columns: 1fr;
+  }
 }

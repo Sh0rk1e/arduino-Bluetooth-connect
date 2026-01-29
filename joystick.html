@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino Car Control - Joystick</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Arduino Car Control - Joystick</h1>
+        <a href="index.html">Back to Button Control</a>
+        <div class="hardware-setup">
+            <h2>Joystick Control</h2>
+            <p>Use the joystick below for smooth analog control of the car.</p>
+            <div id="joystick-container">
+                <canvas id="joystick" width="400" height="400"></canvas>
+            </div>
+            <p id="position">Position: X: 0, Y: 0</p>
+        </div>
+        <button id="connectBtn">Connect via Bluetooth</button>
+        <div id="status">Disconnected</div>
+        <div class="arduino-code">
+            <h2>Arduino Code for Joystick</h2>
+            <pre id="arduinoCode"></pre>
+        </div>
+    </div>
+    <script src="joystick.js"></script>
+</body>
+</html>

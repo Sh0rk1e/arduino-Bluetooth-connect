@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino Car Control</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Arduino Car Control</h1>
+        <div class="pin-inputs">
+            <h2>H-Bridge Pin Configuration</h2>
+            <label>IN1: <input type="number" id="in1" value="2" min="0" max="13"></label>
+            <label>IN2: <input type="number" id="in2" value="3" min="0" max="13"></label>
+            <label>IN3: <input type="number" id="in3" value="4" min="0" max="13"></label>
+            <label>IN4: <input type="number" id="in4" value="5" min="0" max="13"></label>
+        </div>
+        <button id="connectBtn">Connect via Bluetooth</button>
+        <div id="controls" style="display: none;">
+            <button id="forwardBtn">Forward</button>
+            <button id="backwardBtn">Backward</button>
+            <button id="leftBtn">Left</button>
+            <button id="rightBtn">Right</button>
+            <button id="stopBtn">Stop</button>
+        </div>
+        <div id="status">Disconnected</div>
+        <div class="arduino-code">
+            <h2>Arduino Code</h2>
+            <pre id="arduinoCode"></pre>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

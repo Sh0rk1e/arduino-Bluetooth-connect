@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arduino Car Control</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -37,11 +39,11 @@
 
         <button id="connectBtn">Connect via Bluetooth</button>
         <div id="controls" style="display: none;">
-            <button id="forwardBtn">Forward</button>
-            <button id="backwardBtn">Backward</button>
-            <button id="leftBtn">Left</button>
-            <button  id="rightBtn">Right</button>
-            <button id="stopBtn">Stop</button>
+            <button id="forwardBtn"><i class="fas fa-arrow-up"></i> Forward</button>
+            <button id="backwardBtn"><i class="fas fa-arrow-down"></i> Backward</button>
+            <button id="leftBtn"><i class="fas fa-arrow-left"></i> Left</button>
+            <button id="rightBtn"><i class="fas fa-arrow-right"></i> Right</button>
+            <button id="stopBtn"><i class="fas fa-stop"></i> Stop</button>
         </div>
         <div id="status">Disconnected</div>
         <div class="arduino-code">

@@ -35,29 +35,73 @@ const radius = 180;
 let x = 0, y = 0;
 let isDragging = false;
 
+function drawOctagon(x, y, radius) {
+  ctx.beginPath();
+  for (let i = 0; i < 8; i++) {
+    const angle = (i * Math.PI) / 4;
+    const px = x + radius * Math.cos(angle);
+    const py = y + radius * Math.sin(angle);
+    if (i === 0) ctx.moveTo(px, py);
+    else ctx.lineTo(px, py);
+  }
+  ctx.closePath();
+}
+
 function drawJoystick() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  // Outer circle
-  ctx.beginPath();
-  ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
-  ctx.strokeStyle = '#007bff';
-  ctx.lineWidth = 3;
+  // Outer octagon (base)
+  drawOctagon(centerX, centerY, radius);
+  ctx.strokeStyle = '#555';
+  ctx.lineWidth = 4;
   ctx.stroke();
-  // Inner circle
+  ctx.fillStyle = '#333';
+  ctx.fill();
+  // Inner deadzone octagon
+  drawOctagon(centerX, centerY, 40);
+  ctx.strokeStyle = '#666';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  // Joystick shaft (line from center to handle)
   ctx.beginPath();
-  ctx.arc(centerX + x, centerY + y, 30, 0, Math.PI * 2);
+  ctx.moveTo(centerX, centerY);
+  ctx.lineTo(centerX + x, centerY + y);
+  ctx.strokeStyle = '#888';
+  ctx.lineWidth = 8;
+  ctx.lineCap = 'round';
+  ctx.stroke();
+  // Joystick handle
+  drawOctagon(centerX + x, centerY + y, 35);
   ctx.fillStyle = '#007bff';
   ctx.fill();
+  ctx.strokeStyle = '#0056b3';
+  ctx.lineWidth = 3;
+  ctx.stroke();
+  // Handle grip lines
+  ctx.strokeStyle = '#fff';
+  ctx.lineWidth = 2;
+  for (let i = 0; i < 4; i++) {
+    const angle = (i * Math.PI) / 2;
+    const hx = centerX + x + 25 * Math.cos(angle);
+    const hy = centerY + y + 25 * Math.sin(angle);
+    ctx.beginPath();
+    ctx.moveTo(centerX + x, centerY + y);
+    ctx.lineTo(hx, hy);
+    ctx.stroke();
+  }
 }
 
 function updatePosition(clientX, clientY) {
   const rect = canvas.getBoundingClientRect();
   const dx = clientX - rect.left - centerX;
   const dy = clientY - rect.top - centerY;
+  const angle = Math.atan2(dy, dx);
+  const absCos = Math.abs(Math.cos(angle));
+  const absSin = Math.abs(Math.sin(angle));
+  const maxDist = radius / Math.max(absCos, absSin);
   const distance = Math.sqrt(dx * dx + dy * dy);
-  if (distance > radius) {
-    x = (dx / distance) * radius;
-    y = (dy / distance) * radius;
+  if (distance > maxDist) {
+    x = (dx / distance) * maxDist;
+    y = (dy / distance) * maxDist;
   } else {
     x = dx;
     y = dy;
@@ -106,8 +150,8 @@ canvas.addEventListener('mouseleave', () => {
     // Keep current position instead of snapping to 0
     // x and y remain as is
     drawJoystick();
-    const normX = Math.round((x / radius) * 100);
-    const normY = Math.round((y / radius) * 100);
+    const normX = 0;
+    const normY = 0;
     positionDisplay.textContent = `Position: X: ${normX}, Y: ${normY}`;
     // Don't send 0,0
   }
